@@ -1,0 +1,15 @@
+﻿<Window x:Class="DatVelib_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatVelib_UI"
+        mc:Ignorable="d"
+        Title="DATVELIB" Height="1000" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid Background="#FF455A64">
+        <StackPanel  Margin="31,39,0,0" Width="638">
+            <TextBox x:Name="StartBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" GotFocus="StartBox_GotFocus" LostFocus="StartBox_LostFocus"/>
+            <TextBox x:Name="FinishBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" LostFocus="FinishBox_LostFocus" GotFocus="FinishBox_GotFocus"/>
+        </StackPanel>
+    </Grid>
+</Window>
