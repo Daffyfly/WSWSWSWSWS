@@ -1,0 +1,6 @@
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\bin\Debug\DatVelib-Service.exe.config
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\bin\Debug\DatVelib-Service.exe
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\bin\Debug\DatVelib-Service.pdb
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\obj\Debug\DatVelib-Service.csprojResolveAssemblyReference.cache
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\obj\Debug\DatVelib-Service.exe
+C:\Users\Vincent\Desktop\DatVelib\WSWSWSWSWS\DatVelib-Service\DatVelib-Service\obj\Debug\DatVelib-Service.pdb
