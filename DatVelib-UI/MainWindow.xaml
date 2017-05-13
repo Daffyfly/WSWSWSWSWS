@@ -5,11 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DatVelib_UI"
         mc:Ignorable="d"
-        Title="DATVELIB" Height="1000" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="DATVELIB" Height="2000" Width="2000
+        " WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid Background="#FF455A64">
-        <StackPanel  Margin="31,39,0,0" Width="638">
-            <TextBox x:Name="StartBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" GotFocus="StartBox_GotFocus" LostFocus="StartBox_LostFocus"/>
-            <TextBox x:Name="FinishBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" LostFocus="FinishBox_LostFocus" GotFocus="FinishBox_GotFocus"/>
+        <StackPanel x:Name="InputPanel"  Margin="66,29,1288,10" Width="638">
+            <TextBox x:Name="StartBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" GotFocus="StartBox_GotFocus" LostFocus="StartBox_LostFocus" MouseEnter="StartBox_MouseEnter" MouseLeave="StartBox_MouseLeave" FontFamily="Segoe UI Light"/>
+            <TextBox x:Name="FinishBox" Height="60" TextWrapping="Wrap" Text="" FontSize="36" Foreground="#FF757575" LostFocus="FinishBox_LostFocus" GotFocus="FinishBox_GotFocus" MouseEnter="FinishBox_MouseEnter" MouseLeave="FinishBox_MouseLeave" FontFamily="Segoe UI Light"/>
+            <TextBlock x:Name="GoBlock" TextWrapping="Wrap" Text="Trouver un trajet" Background="#FF2196F3" Foreground="White" FontSize="48" FontFamily="Segoe UI Light" MouseEnter="GoBlock_MouseEnter" MouseLeave="GoBlock_MouseLeave" MouseDown="GoBlock_MouseDown"/>
+        </StackPanel>
+        <StackPanel x:Name="ResultPanel" HorizontalAlignment="Left" Height="1270" Margin="977,29,0,0" VerticalAlignment="Top" Width="604">
+            <TextBlock x:Name="ResultTitle" TextWrapping="Wrap" Text="Votre trajet" TextAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" Background="#FF2196F3" FontSize="30"/>
+            <TextBlock x:Name="TrajectoryBlock" TextWrapping="Wrap" FontSize="20" FontFamily="Segoe UI Light" Foreground="White" Padding="0,10,0,0"/>
+            <Separator Height="61" Margin="0" Background="White"/>
+            <ScrollViewer x:Name="Scroller" Height="574">
+                <StackPanel x:Name="InstructionsPanel" Width="581"/>
+            </ScrollViewer>
+            <TextBlock x:Name="ReturnBlock" TextWrapping="Wrap" Text="Retour" Background="#FFFC6042" Foreground="White" FontFamily="Segoe UI Light" FontSize="30" TextAlignment="Center" Padding="0,15" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

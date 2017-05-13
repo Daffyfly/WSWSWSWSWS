@@ -12,3 +12,17 @@ D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DatVelib-UI\obj\Debug\DatV
 D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DatVelib-UI\obj\Debug\DatVelib-UI.csproj.GenerateResource.Cache
 D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DatVelib-UI\obj\Debug\DatVelib-UI.exe
 D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DatVelib-UI\obj\Debug\DatVelib-UI.pdb
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\bin\Debug\DatVelib-UI.exe.config
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI.exe
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI.pdb
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\bin\Debug\DatVelib-UI.exe
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\bin\Debug\DatVelib-UI.pdb
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI.csprojResolveAssemblyReference.cache
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\MainWindow.g.cs
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\App.g.cs
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI_MarkupCompile.cache
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI_MarkupCompile.lref
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\MainWindow.baml
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI.g.resources
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib_UI.Properties.Resources.resources
+D:\Documents\Desktop\TRAVAIL\POLYTECH\SI4\SERVICESWEB\DATVELIB\WSWSWSWSWS\DatVelib-UI\obj\Debug\DatVelib-UI.csproj.GenerateResource.Cache
