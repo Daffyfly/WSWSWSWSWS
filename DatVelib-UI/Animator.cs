@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -30,6 +31,27 @@ namespace DatVelib_UI
         }
 
         public static void FadeTextBox(TextBox box, DependencyProperty opacityProperty)
+        {
+            box.Visibility = System.Windows.Visibility.Visible;
+
+            var a = new DoubleAnimation
+            {
+                From = 1.0,
+                To = 0.0,
+                FillBehavior = FillBehavior.Stop,
+                BeginTime = TimeSpan.FromSeconds(0.1),
+                Duration = new Duration(TimeSpan.FromSeconds(0.5))
+            };
+            var storyboard = new Storyboard();
+
+            storyboard.Children.Add(a);
+            Storyboard.SetTarget(a, box);
+            Storyboard.SetTargetProperty(a, new PropertyPath(opacityProperty));
+            storyboard.Completed += delegate { box.Visibility = System.Windows.Visibility.Hidden; };
+            storyboard.Begin();
+        }
+
+        public static void FadePanel(StackPanel box, DependencyProperty opacityProperty)
         {
             box.Visibility = System.Windows.Visibility.Visible;
 
