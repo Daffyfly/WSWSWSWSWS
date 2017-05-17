@@ -31,12 +31,14 @@ namespace DatVelib_UI
             InitializeComponent();
             StartBox.Text = StartBoxText;
             FinishBox.Text = FinishBoxText;
+
+            //Dynamically setting this, more convenient
             InputPanel.HorizontalAlignment = HorizontalAlignment.Center;
             InputPanel.Margin = new Thickness(0, 50, 0, 0);
             GoBlock.TextAlignment = TextAlignment.Center;
             GoBlock.Padding = new Thickness(0, 20, 0, 20);
 
-
+            //Setting & Hiding the results panel
             ResultPanel.Visibility = Visibility.Collapsed;
             ResultPanel.Margin = new Thickness(0, 50, 0, 0);
             ResultPanel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -45,7 +47,8 @@ namespace DatVelib_UI
             Scroller.Width = SystemParameters.PrimaryScreenWidth / 2;
             InstructionsPanel.Width = SystemParameters.PrimaryScreenWidth / 2;
 
-
+            //Temporary filling the results
+            /// THIS IS WHERE IS CALL THE OTHER PROJECT FUNCTION///
             for (int i = 0; i < 500; i++)
             {
                 InstructionBlock t = new InstructionBlock("Ceci est une instruction " + i);
@@ -55,43 +58,42 @@ namespace DatVelib_UI
 
         }
 
+        private bool CanValidate()
+        {
+            if (StartBox.Text != StartBoxText && StartBox.Text != "".Trim()
+                && FinishBox.Text != FinishBoxText && FinishBox.Text != "".Trim())
+                return true;
+            return false;
+        }
+
+        #region FOCUS_EVENTS
         private void StartBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            //Emptying the textbox when the user focuses on it
             if (StartBox.Text == StartBoxText)
                 StartBox.Text = "";
         }
 
         private void StartBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (StartBox.Text == "")
+            //Reputting default text in textbox
+            if (StartBox.Text.Trim() == "")
                 StartBox.Text = StartBoxText;
 
         }
 
         private void FinishBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            //Emptying the textbox when the user focuses on it
             if (FinishBox.Text == FinishBoxText)
                 FinishBox.Text = "";
         }
 
         private void FinishBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (FinishBox.Text == "")
+            //Reputting default text in textbox
+            if (FinishBox.Text.Trim() == "")
                 FinishBox.Text = FinishBoxText;
-        }
-
-
-
-        private void GoBlock_MouseEnter(object sender, MouseEventArgs e)
-        {
-            GoBlock.Background = Ut.GetColor(255, 255, 255);
-            GoBlock.Foreground = Ut.GetColor(33, 150, 243);
-        }
-
-        private void GoBlock_MouseLeave(object sender, MouseEventArgs e)
-        {
-            GoBlock.Foreground = Ut.GetColor(255, 255, 255);
-            GoBlock.Background = Ut.GetColor(33, 150, 243);
         }
 
         private void StartBox_MouseEnter(object sender, MouseEventArgs e)
@@ -115,6 +117,33 @@ namespace DatVelib_UI
             FinishBox.Foreground = Ut.GetColor(117, 117, 117);
 
         }
+
+        private void StartBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ErrorBlock.Visibility = Visibility.Collapsed;
+        }
+
+        private void FinishBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ErrorBlock.Visibility = Visibility.Collapsed;
+        }
+
+        #endregion
+
+        #region GOBLOCK
+        private void GoBlock_MouseEnter(object sender, MouseEventArgs e)
+        {
+            GoBlock.Background = Ut.GetColor(255, 255, 255);
+            GoBlock.Foreground = Ut.GetColor(33, 150, 243);
+        }
+
+        private void GoBlock_MouseLeave(object sender, MouseEventArgs e)
+        {
+            GoBlock.Foreground = Ut.GetColor(255, 255, 255);
+            GoBlock.Background = Ut.GetColor(33, 150, 243);
+        }
+
+       
 
         private void GoBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -142,16 +171,11 @@ namespace DatVelib_UI
 
         }
 
+        #endregion
 
+        
 
-        private bool CanValidate()
-        {
-            if (StartBox.Text != StartBoxText && StartBox.Text != "".Trim()
-                && FinishBox.Text != FinishBoxText && FinishBox.Text != "".Trim())
-                return true;
-            return false;
-        }
-
+        #region RETURNBLOCK
         private void ReturnBlock_MouseEnter(object sender, MouseEventArgs e)
         {
             ReturnBlock.Foreground = Ut.GetColor(252, 96, 66);
@@ -168,16 +192,11 @@ namespace DatVelib_UI
         {
             Animator.FadePanel(ResultPanel, OpacityProperty);
             InputPanel.Visibility = Visibility.Visible;
-        }
+            StartBox.Text = StartBoxText;
+            FinishBox.Text = FinishBoxText;
+        } 
+        #endregion
 
-        private void StartBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ErrorBlock.Visibility = Visibility.Collapsed;
-        }
 
-        private void FinishBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ErrorBlock.Visibility = Visibility.Collapsed;
-        }
     }
 }

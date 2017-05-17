@@ -72,6 +72,7 @@ namespace DatVelib_UI
             storyboard.Begin();
         }
 
+        //does not work
         public static void ReverseFade(StackPanel s, DependencyProperty opacityProperty)
         {
             s.Visibility = System.Windows.Visibility.Hidden;
