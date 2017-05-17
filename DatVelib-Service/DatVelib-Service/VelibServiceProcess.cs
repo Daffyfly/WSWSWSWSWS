@@ -15,17 +15,15 @@ namespace VelibServiceProcess
     {
         public string name { get; set; }
         public string addr { get; set; }
+        public string number { get; set; }
         public GeoCoordinate geo { get; set; }
-        public bool available { get; set; }
-        public bool free { get; set; }
 
-        public Station(string name, string addr, GeoCoordinate geo, bool available, bool free)
+        public Station(string name,string addr, string number, GeoCoordinate geo)
         {
             this.name = name;
             this.addr = addr;
+            this.number = number;
             this.geo = geo;
-            this.available = available;
-            this.free = free;
         }
     }
 
@@ -44,6 +42,7 @@ namespace VelibServiceProcess
             // Get the stream containing content returned by the server.
             Stream dataStream = response.GetResponseStream();
 
+
             // Open the stream using a StreamReader for easy access and put it into a string
             StreamReader reader = new StreamReader(dataStream); // Read the content.
             string responseFromServer = reader.ReadToEnd(); // Put it in a String 
@@ -55,8 +54,26 @@ namespace VelibServiceProcess
 
             for (int i = 0; i < elemList.Count; i++)
             {
+                double lat_station = double.Parse(elemList[i].Attributes["lat"].Value, CultureInfo.InvariantCulture);
+                double lng_station = double.Parse(elemList[i].Attributes["lng"].Value, CultureInfo.InvariantCulture);
+                GeoCoordinate tmp = new GeoCoordinate(lat_station, lng_station);
+                stations.Add(new Station(elemList[i].Attributes["name"].Value,
+                    elemList[i].Attributes["address"].Value,
+                    elemList[i].Attributes["number"].Value,
+                    tmp));
+            }
+
+
+            response.Close();
+            reader.Close();
+        }
+
+        static string FindClosestAvailable(List<Station> stations, string type)
+        {
+            foreach (Station station in stations)
+            {
                 //Test if Velib has places or is full
-                WebRequest request_for_data = WebRequest.Create("http://www.velib.paris/service/stationdetails/" + elemList[i].Attributes["number"].Value);
+                WebRequest request_for_data = WebRequest.Create("http://www.velib.paris/service/stationdetails/" + station.number);
                 // Get Response 
                 WebResponse response_for_data = request_for_data.GetResponse();
 
@@ -68,58 +85,31 @@ namespace VelibServiceProcess
                 // Parse the response and put the entries in XmlNodeList 
                 XmlDocument doc_for_data = new XmlDocument();
                 doc_for_data.LoadXml(responseFromServer_for_data);
-                XmlNodeList elemList_for_data = doc_for_data.GetElementsByTagName("available");
+                XmlNodeList elemList_for_data = doc_for_data.GetElementsByTagName(type);
 
                 // Display the result 
-                bool available = (Convert.ToInt16(doc_for_data.GetElementsByTagName("available")[0].FirstChild.Value) != 0);
-                bool free = (Convert.ToInt16(doc_for_data.GetElementsByTagName("free")[0].FirstChild.Value) != 0);
+                bool available = (Convert.ToInt16(doc_for_data.GetElementsByTagName(type)[0].FirstChild.Value) != 0);
                 reader_for_data.Close();
                 response_for_data.Close();
-
-                double lat_station = double.Parse(elemList[i].Attributes["lat"].Value, CultureInfo.InvariantCulture);
-                double lng_station = double.Parse(elemList[i].Attributes["lng"].Value, CultureInfo.InvariantCulture);
-                GeoCoordinate tmp = new GeoCoordinate(lat_station, lng_station);
-                stations.Add(new Station(elemList[i].Attributes["name"].Value,
-                    elemList[i].Attributes["address"].Value,
-                    tmp, available, free));
+                if (available)
+                {
+                    return station.addr;
+                }
             }
-            reader.Close();
-            response.Close();
+            return "";
         }
 
-        public string FindBestVelibs(GeoCoordinate add1, GeoCoordinate add2)
+        
+
+        public List<string> FindBestVelibs(GeoCoordinate add1, GeoCoordinate add2)
         {
-            // Create a request for the URL.
-               
+            List<Station> stations_start = stations.OrderBy(o => o.geo.GetDistanceTo(add1)).ToList();
+            List<Station> stations_dest = stations.OrderBy(o => o.geo.GetDistanceTo(add2)).ToList();
 
-            double min_distance1 = add1.GetDistanceTo(add2);
-            double min_distance2 = add1.GetDistanceTo(add2);
-
-            string start = "";
-            string dest = "";
-            // browse the XmlNodeList
-            foreach (Station station in stations)
-            {
-                if (station.available)
-                {
-                    double tmpdist = station.geo.GetDistanceTo(add1);
-                    if (tmpdist < min_distance1)
-                    {
-                        min_distance1 = tmpdist;
-                        start = station.name;
-                    }
-                }
-                if (station.free)
-                {
-                    double tmpdist = station.geo.GetDistanceTo(add2);
-                    if (tmpdist < min_distance2)
-                    {
-                        min_distance2 = tmpdist;
-                        dest = station.name;
-                    }
-                }
-            }
-            return start + " " + dest;
+            List<string> velibs = new List<string>();
+            velibs.Add(FindClosestAvailable(stations_start, "available"));
+            velibs.Add(FindClosestAvailable(stations_dest, "free"));
+            return velibs;
         }
     }
 }
