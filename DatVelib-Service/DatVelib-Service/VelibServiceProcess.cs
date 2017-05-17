@@ -9,8 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
+
+
 namespace VelibServiceProcess
 {
+    
+
+
     public class Station
     {
         public string name { get; set; }

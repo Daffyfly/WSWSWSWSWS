@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Dat_VelibService;
+
 namespace DatVelib_UI
 {
     /// <summary>
@@ -150,13 +152,14 @@ namespace DatVelib_UI
 
             if (CanValidate())
             {
-                if (true) //call teh function that gives results
+                List<string> result = Dat_VelibService.DatVelibService.GetClosestVelibs(StartBox.Text, FinishBox.Text);
+                if (result.Count == 2) //call teh function that gives results
                 {
                     Animator.FadePanel(InputPanel, OpacityProperty);
                     ResultPanel.Visibility = Visibility.Visible;
                     StartAddressBlock.Text = "Départ : " + StartBox.Text;
-                    StartVelibBlock.Text = "Station de vélib la plus proche : " + "MAGUEULE";
-                    FinishVelibBlock.Text = "Station de vélib arrivée : " + "MAGUEULE2";
+                    StartVelibBlock.Text = "Station de vélib la plus proche : " + result[0].Replace("-","");
+                    FinishVelibBlock.Text = "Station de vélib arrivée : " + result[1].Replace("-", "");
                     FinishAddressBlock.Text = "Arrivée : " + FinishBox.Text;
 
                     StartAddressBlock.TextWrapping = TextWrapping.Wrap;

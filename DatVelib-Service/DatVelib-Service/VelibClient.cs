@@ -22,5 +22,15 @@ namespace Dat_VelibService
             VelibProcess vp = new VelibProcess();
             return vp.FindBestVelibs(ap.add1,ap.add2);
         }
+        //static public Main(string[] args)
+        //{
+        //    return null;
+        //}
+
+        //static int Main(string[] args)
+        //{
+        //    //...
+        //    return 0;
+        //}
     }
 }
