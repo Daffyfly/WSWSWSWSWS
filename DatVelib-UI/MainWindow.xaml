@@ -17,7 +17,10 @@
         </StackPanel>
         <StackPanel x:Name="ResultPanel" HorizontalAlignment="Left" Height="1270" Margin="977,29,0,0" VerticalAlignment="Top" Width="604">
             <TextBlock x:Name="ResultTitle" TextWrapping="Wrap" Text="Votre trajet" TextAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" Background="#FF2196F3" FontSize="30"/>
-            <TextBlock x:Name="TrajectoryBlock" TextWrapping="Wrap" FontSize="20" FontFamily="Segoe UI Light" Foreground="White" Padding="0,10,0,0"/>
+            <TextBlock x:Name="StartAddressBlock" TextWrapping="Wrap" FontSize="20" FontFamily="Segoe UI Light" Foreground="White" Padding="0,10,0,0"/>
+            <TextBlock x:Name="StartVelibBlock" TextWrapping="Wrap" FontSize="20" Foreground="White" FontFamily="Segoe UI Light"><Run Text="Start velib"/></TextBlock>
+            <TextBlock x:Name="FinishVelibBlock" TextWrapping="Wrap" FontSize="20" Foreground="White" FontFamily="Segoe UI Light"><Run Text="Finish velib"/></TextBlock>
+            <TextBlock x:Name="FinishAddressBlock" TextWrapping="Wrap" Text="Finish Address" Foreground="White" FontSize="20" FontFamily="Segoe UI Light"/>
             <Separator Height="61" Margin="0" Background="White"/>
             <ScrollViewer x:Name="Scroller" Height="574">
                 <StackPanel x:Name="InstructionsPanel" Width="581"/>

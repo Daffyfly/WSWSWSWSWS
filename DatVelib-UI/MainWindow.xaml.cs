@@ -154,8 +154,16 @@ namespace DatVelib_UI
                 {
                     Animator.FadePanel(InputPanel, OpacityProperty);
                     ResultPanel.Visibility = Visibility.Visible;
-                    TrajectoryBlock.Text = "De " + StartBox.Text + " à " + FinishBox.Text;
-                    TrajectoryBlock.TextWrapping = TextWrapping.Wrap;
+                    StartAddressBlock.Text = "Départ : " + StartBox.Text;
+                    StartVelibBlock.Text = "Station de vélib la plus proche : " + "MAGUEULE";
+                    FinishVelibBlock.Text = "Station de vélib arrivée : " + "MAGUEULE2";
+                    FinishAddressBlock.Text = "Arrivée : " + FinishBox.Text;
+
+                    StartAddressBlock.TextWrapping = TextWrapping.Wrap;
+                    StartVelibBlock.TextWrapping = TextWrapping.Wrap;
+                    FinishVelibBlock.TextWrapping = TextWrapping.Wrap;
+                    FinishAddressBlock.TextWrapping = TextWrapping.Wrap;
+
                     ErrorBlock.Visibility = Visibility.Collapsed;
                 }
 
