@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Dat_VelibService;
+using DatVelib_Service;
 
 namespace DatVelib_UI
 {
@@ -50,7 +51,9 @@ namespace DatVelib_UI
             InstructionsPanel.Width = SystemParameters.PrimaryScreenWidth / 2;
 
             //Temporary filling the results
-            /// THIS IS WHERE IS CALL THE OTHER PROJECT FUNCTION///
+            /// THIS IS WHERE IS CALLED THE OTHER PROJECT FUNCTION///
+            /// 
+            TravelProcess.GetTravel();
             for (int i = 0; i < 500; i++)
             {
                 InstructionBlock t = new InstructionBlock("Ceci est une instruction " + i);
