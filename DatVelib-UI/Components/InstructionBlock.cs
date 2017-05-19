@@ -15,7 +15,7 @@ namespace DatVelib_UI.Components
         {
             this.Text = content;
             this.Foreground = Ut.GetColor(255, 255, 255);
-            this.FontSize = 20;
+            this.FontSize = 15;
             this.Padding = new Thickness(0, 5, 0, 0);
             this.TextWrapping = TextWrapping.Wrap;
         }

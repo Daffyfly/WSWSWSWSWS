@@ -1,0 +1,10 @@
+
+*.nupkg
+
+DatVelib-UI/packages/Zlib\.Portable\.Signed\.1\.11\.0/lib/portable-net4\+sl5\+wp8\+win8\+wpa81\+MonoTouch\+MonoAndroid/Zlib\.Portable\.xml
+
+DatVelib-UI/packages/Google\.Apis\.Core\.1\.25\.0/
+
+DatVelib-UI/packages/Google\.Apis\.1\.25\.0/
+
+DatVelib-UI/obj/Debug/
