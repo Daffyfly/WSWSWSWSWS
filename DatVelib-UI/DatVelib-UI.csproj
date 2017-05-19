@@ -101,7 +101,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DatVelib-Service\DatVelib-Service\DatVelib-Service.csproj">
+      <Project>{58c84348-b08f-413a-a1fc-4ee8bd9f841c}</Project>
+      <Name>DatVelib-Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -53,12 +53,8 @@ namespace DatVelib_UI
             //Temporary filling the results
             /// THIS IS WHERE IS CALLED THE OTHER PROJECT FUNCTION///
             /// 
-            TravelProcess.GetTravel();
-            for (int i = 0; i < 500; i++)
-            {
-                InstructionBlock t = new InstructionBlock("Ceci est une instruction " + i);
-                InstructionsPanel.Children.Add(t);
-            }
+            
+          
 
 
         }
@@ -169,6 +165,15 @@ namespace DatVelib_UI
                     StartVelibBlock.TextWrapping = TextWrapping.Wrap;
                     FinishVelibBlock.TextWrapping = TextWrapping.Wrap;
                     FinishAddressBlock.TextWrapping = TextWrapping.Wrap;
+
+                    //TravelProcess.GetTravel(StartBox.Text, FinishBox.Text);
+
+                    foreach (var item in TravelProcess.GetTravel(StartBox.Text, FinishBox.Text))
+                    {
+                        InstructionBlock t = new InstructionBlock(item);
+                        InstructionsPanel.Children.Add(t);
+                    }
+                  
 
                     ErrorBlock.Visibility = Visibility.Collapsed;
                 }
