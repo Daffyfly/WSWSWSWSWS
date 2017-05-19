@@ -44,7 +44,7 @@ namespace DatVelib_Service
                     {
                         //Console.WriteLine(obj["routes"][0]["legs"][0]["steps"][i]["html_instructions"]);
                         string direction = obj["routes"][0]["legs"][0]["steps"][i]["html_instructions"].ToString();
-                        direction = Regex.Replace(direction, "<.*?>", String.Empty);
+                        direction = Regex.Replace(direction, "<.*?>", " ");
                         byte[] bytes = Encoding.Default.GetBytes(direction);
                         direction = Encoding.UTF8.GetString(bytes);
 
