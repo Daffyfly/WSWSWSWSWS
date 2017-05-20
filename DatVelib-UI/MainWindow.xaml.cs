@@ -1,20 +1,12 @@
 ﻿using DatVelib_UI.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 using Dat_VelibService;
 using DatVelib_Service;
@@ -26,6 +18,7 @@ namespace DatVelib_UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        //default values
         static string StartBoxText = "Adresse de départ";
         static string FinishBoxText = "Adresse d'arrivée";
 
@@ -50,15 +43,9 @@ namespace DatVelib_UI
             Scroller.Width = SystemParameters.PrimaryScreenWidth / 2;
             InstructionsPanel.Width = SystemParameters.PrimaryScreenWidth / 2;
 
-            //Temporary filling the results
-            /// THIS IS WHERE IS CALLED THE OTHER PROJECT FUNCTION///
-            /// 
-            
-          
-
-
         }
 
+        //Are all fields ok ?
         private bool CanValidate()
         {
             if (StartBox.Text != StartBoxText && StartBox.Text != "".Trim()
@@ -144,55 +131,63 @@ namespace DatVelib_UI
             GoBlock.Background = Ut.GetColor(33, 150, 243);
         }
 
-       
+
 
         private void GoBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-            if (CanValidate())
+            try
             {
-                List<string> result = Dat_VelibService.DatVelibService.GetClosestVelibs(StartBox.Text, FinishBox.Text);
-                if (result.Count == 2) //call teh function that gives results
+                if (CanValidate())
                 {
-                    Animator.FadePanel(InputPanel, OpacityProperty);
-                    ResultPanel.Visibility = Visibility.Visible;
-                    StartAddressBlock.Text = "Départ : " + StartBox.Text;
-                    StartVelibBlock.Text = "Station de vélib la plus proche : " + result[0].Replace("-","");
-                    FinishVelibBlock.Text = "Station de vélib arrivée : " + result[1].Replace("-", "");
-                    FinishAddressBlock.Text = "Arrivée : " + FinishBox.Text;
-
-                    StartAddressBlock.TextWrapping = TextWrapping.Wrap;
-                    StartVelibBlock.TextWrapping = TextWrapping.Wrap;
-                    FinishVelibBlock.TextWrapping = TextWrapping.Wrap;
-                    FinishAddressBlock.TextWrapping = TextWrapping.Wrap;
-
-                    //TravelProcess.GetTravel(StartBox.Text, FinishBox.Text);
-
-                    foreach (var item in TravelProcess.GetTravel(StartBox.Text, FinishBox.Text))
+                    List<string> result = Dat_VelibService.DatVelibService.GetClosestVelibs(StartBox.Text, FinishBox.Text);
+                    if (result.Count == 2) //call the function that gives results
                     {
-                        InstructionBlock t = new InstructionBlock(item);
-                        InstructionsPanel.Children.Add(t);
+                        //Filling the blocks with data
+                        StartAddressBlock.Text = "Départ : " + StartBox.Text;
+                        StartVelibBlock.Text = "Station de vélib la plus proche : " + result[0].Replace("-", "");
+                        FinishVelibBlock.Text = "Station de vélib arrivée : " + result[1].Replace("-", "");
+                        FinishAddressBlock.Text = "Arrivée : " + FinishBox.Text;
+
+                        StartAddressBlock.TextWrapping = TextWrapping.Wrap;
+                        StartVelibBlock.TextWrapping = TextWrapping.Wrap;
+                        FinishVelibBlock.TextWrapping = TextWrapping.Wrap;
+                        FinishAddressBlock.TextWrapping = TextWrapping.Wrap;
+
+                        //Getting the directions to follow
+
+                        List<string> directions = TravelProcess.GetTravel(StartBox.Text, FinishBox.Text);
+                        if (directions.Count > 0)
+                        {
+                            foreach (var item in directions)
+                            {
+                                InstructionBlock t = new InstructionBlock(item);
+                                InstructionsPanel.Children.Add(t);
+                            }
+
+                            //hiding the addresses input
+                            Animator.FadePanel(InputPanel, OpacityProperty);
+                            //Showing the results
+                            ResultPanel.Visibility = Visibility.Visible;
+                            ErrorBlock.Visibility = Visibility.Collapsed;
+                        }
                     }
-                  
-
-                    ErrorBlock.Visibility = Visibility.Collapsed;
+                    else
+                    {
+                        ErrorBlock.Visibility = Visibility.Visible;
+                    }
                 }
-
-                else
-                {
-                    ErrorBlock.Visibility = Visibility.Visible;
-                }
-
 
             }
-            else
-                Console.WriteLine("NOT VALID!!!");
+            catch (Exception)
+            {
 
+                MessageBox.Show("Un erreur est survenue, en général c'est  parce que les adresses sont invalides ou le service de Velib n'est pas disponible.");
+            }
         }
 
         #endregion
 
-        
+
 
         #region RETURNBLOCK
         private void ReturnBlock_MouseEnter(object sender, MouseEventArgs e)
@@ -213,7 +208,7 @@ namespace DatVelib_UI
             InputPanel.Visibility = Visibility.Visible;
             StartBox.Text = StartBoxText;
             FinishBox.Text = FinishBoxText;
-        } 
+        }
         #endregion
 
 
