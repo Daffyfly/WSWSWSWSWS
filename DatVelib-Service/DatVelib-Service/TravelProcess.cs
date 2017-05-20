@@ -33,22 +33,18 @@ namespace DatVelib_Service
 
                 var json = wc.DownloadString(url);
                 var obj = JObject.Parse(json);
-                //var url = (string)obj;
-                //le dernier int est à changer pour parcourir
 
+                //le dernier int est à changer pour parcourir
                 JToken j = obj["routes"][0]["legs"][0]["steps"][0]["html_instructions"];
                 for (int i = 0; j != null; i++)
                 {
                     //Using the magic trick because the json lib is so cool there's no obvious way to check if soemthing is null
                     try
                     {
-                        //Console.WriteLine(obj["routes"][0]["legs"][0]["steps"][i]["html_instructions"]);
                         string direction = obj["routes"][0]["legs"][0]["steps"][i]["html_instructions"].ToString();
                         direction = Regex.Replace(direction, "<.*?>", " ");
                         byte[] bytes = Encoding.Default.GetBytes(direction);
                         direction = Encoding.UTF8.GetString(bytes);
-
-                        
 
                         directions.Add(direction);
                         
