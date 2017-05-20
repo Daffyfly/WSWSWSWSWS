@@ -8,7 +8,6 @@ using System.Device.Location;
 
 namespace AdressServiceProcess
 {
-
     public class AddressesProcess
     {
         public GeoCoordinate add1 { get; set; }

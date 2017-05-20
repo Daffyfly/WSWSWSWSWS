@@ -13,9 +13,6 @@ using System.Xml;
 
 namespace VelibServiceProcess
 {
-    
-
-
     public class Station
     {
         public string name { get; set; }
@@ -103,8 +100,6 @@ namespace VelibServiceProcess
             }
             return "";
         }
-
-        
 
         public List<string> FindBestVelibs(GeoCoordinate add1, GeoCoordinate add2)
         {

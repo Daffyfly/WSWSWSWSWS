@@ -14,10 +14,10 @@ namespace DatVelib_Service
 {
     public class TravelProcess
     {
+        //example of request : https://maps.googleapis.com/maps/api/directions/json?origin=75%209th%20Ave%20New%20York%2C%20NY&destination=MetLife%20Stadium%201%20MetLife%20Stadium%20Dr%20East%20Rutherford%2C%20NJ%2007073&key=AIzaSyB866tux2Kc4sC-MzRFTYECvFYqDsRsNwg
 
         public static List<string> GetTravel(string address1, string address2)
-        {//https://maps.googleapis.com/maps/api/directions/json?origin=75%209th%20Ave%20New%20York%2C%20NY&destination=MetLife%20Stadium%201%20MetLife%20Stadium%20Dr%20East%20Rutherford%2C%20NJ%2007073&key=AIzaSyB866tux2Kc4sC-MzRFTYECvFYqDsRsNwg
-
+        {
             //Will contain the directions to follow
             List<string> directions = new List<string>();
 
@@ -34,7 +34,7 @@ namespace DatVelib_Service
                 var json = wc.DownloadString(url);
                 var obj = JObject.Parse(json);
 
-                //le dernier int est à changer pour parcourir
+                //change the last [0] for iterations
                 JToken j = obj["routes"][0]["legs"][0]["steps"][0]["html_instructions"];
                 for (int i = 0; j != null; i++)
                 {
@@ -42,17 +42,14 @@ namespace DatVelib_Service
                     try
                     {
                         string direction = obj["routes"][0]["legs"][0]["steps"][i]["html_instructions"].ToString();
-                        direction = Regex.Replace(direction, "<.*?>", " ");
+                        direction = Regex.Replace(direction, "<.*?>", " "); //removing html tags
                         byte[] bytes = Encoding.Default.GetBytes(direction);
-                        direction = Encoding.UTF8.GetString(bytes);
+                        direction = Encoding.UTF8.GetString(bytes);//converting to utf-8
 
-                        directions.Add(direction);
-                        
-
+                        directions.Add(direction);                       
                     }
                     catch (Exception)
                     {
-
                         break;
                     }
                 }
